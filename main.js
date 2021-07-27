@@ -13,3 +13,12 @@ for (let i = 1; i <= 10; i++) {
         console.log('FizBuz')
     }
 }
+
+// task2
+let factorial = 1
+
+for (let i = 10; i >= 1; i--) {
+    factorial *= i
+}
+
+console.log(factorial)
