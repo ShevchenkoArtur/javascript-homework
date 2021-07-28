@@ -22,3 +22,18 @@ for (let i = 10; i >= 1; i--) {
 }
 
 console.log(factorial)
+
+// task3
+const sheetsInReamPaper = 500;
+const consumptionPerWeek = 1200;
+const weeksAmount = 8;
+
+let i = 0
+let result = 0;
+
+while (i < consumptionPerWeek * weeksAmount) {
+    i += sheetsInReamPaper
+    result++
+}
+
+console.log(result)
