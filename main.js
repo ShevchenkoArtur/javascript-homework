@@ -38,7 +38,7 @@ while (i < consumptionPerWeek * weeksAmount) {
 
 console.log(result)
 
-//task4
+// task4
 const roomsOnFloor = 3;
 const floors = 9;
 const roomNumber = 15
@@ -57,3 +57,33 @@ floor = floors - ((amountApart - roomNumber - (amountApart - roomNumber) % rooms
 
 console.log(floor + ' floor')
 console.log(porch + ' porch')
+
+// task5
+let medianNumber = 6
+let pyramid = ''
+let firstNumberSign = medianNumber - 1
+let numberSign = 1
+
+for (let i = 0; i < medianNumber; i++) {
+
+    for (let j = 0; j < (medianNumber - 1) * 2 + 1; j++) {
+
+        if (j === firstNumberSign) {
+
+            for (let k = 0; k < numberSign; k++) {
+                pyramid += '#'
+                j++
+            }
+        }
+        if (i === medianNumber - 1) {
+            break
+        }
+        pyramid += '-'
+    }
+
+    pyramid += '\n'
+    firstNumberSign--
+    numberSign += 2
+}
+
+console.log(pyramid)
