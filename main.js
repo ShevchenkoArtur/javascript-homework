@@ -37,3 +37,23 @@ while (i < consumptionPerWeek * weeksAmount) {
 }
 
 console.log(result)
+
+//task4
+const roomsOnFloor = 3;
+const floors = 9;
+const roomNumber = 15
+
+let porch = 0
+let floor = 0
+
+while (porch < (roomNumber - (roomsOnFloor * floors))) {
+    porch = porch + roomsOnFloor * floors;
+}
+
+porch = porch / (roomsOnFloor * floors) + 1;
+
+let amountApart = porch * roomsOnFloor * floors;
+floor = floors - ((amountApart - roomNumber - (amountApart - roomNumber) % roomsOnFloor) / roomsOnFloor);
+
+console.log(floor + ' floor')
+console.log(porch + ' porch')
