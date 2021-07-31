@@ -18,6 +18,29 @@ for (let i = 0; i < arrOfCity.length; i++) {
 
 console.log(result)
 
+// task2
+const getArray = amount => {
+    if (amount % 3 !== 0) {
+        throw 'Максимальное значение должно делится на 3 нацело'
+    }
+
+    let result = []
+
+    for (let i = 1; i <= amount; i++) {
+        result.push(i)
+    }
+
+    for (let i = 0; i < amount / 3; i++) {
+        let newArr = result.slice(0, 3)
+        result.splice(0, 3)
+        result.push(newArr)
+    }
+
+    return result
+}
+
+console.log(getArray(12));
+
 // task3
 const namesOfDays = {
     ru: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
