@@ -109,3 +109,21 @@ const getSumOfTwoSmallestNumbers = arr => {
 }
 
 console.log(getSumOfTwoSmallestNumbers([19, 5, 42, 2, 77]));
+
+// task5
+const binaryArr = [1, 1, 1, 0, 0, 1]
+let integerNumber = 0
+
+binaryArr.reverse()
+
+for (let i = 0; i < binaryArr.length; i++) {
+    if (binaryArr[i] === 0) {
+        continue
+    }
+
+    if (binaryArr[i] === 1) {
+        integerNumber += binaryArr[i] * Math.pow(2, i)
+    }
+}
+
+console.log(integerNumber)
