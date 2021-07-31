@@ -67,3 +67,45 @@ const getNameOfDay = (lang, day) => {
 }
 
 console.log(getNameOfDay('en', 7));
+
+// task4
+const isUnique = arr => {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i] === arr[j]) return false
+        }
+    }
+    return true
+}
+
+const getSumOfTwoSmallestNumbers = arr => {
+    if (!Array.isArray(arr)) {
+        throw 'Аргументом должен быть массив'
+    }
+
+    for (let i = 0; i < arr.length; i++) {
+        if (!Number.isInteger(arr[i]) || typeof arr[i] !== 'number') {
+            throw 'Массив должен содержать целые числа'
+        }
+    }
+
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] < 0) {
+            throw 'Массив должен содержать положительные числа'
+        }
+    }
+
+    if (arr.length < 4) {
+        throw 'Массив должен содержать минимум 4 числа'
+    }
+
+    if (!isUnique(arr)) {
+        throw 'В массиве не могут содержаться одинаковые числа'
+    }
+
+    arr.sort((a, b) => a - b)
+
+    return arr[0] + arr[1]
+}
+
+console.log(getSumOfTwoSmallestNumbers([19, 5, 42, 2, 77]));
