@@ -13,3 +13,10 @@ const employee = employeeArr[0]
 const employeeObj = new Employee(employee)
 
 console.log(employeeObj)
+
+// task2
+Employee.prototype.getFullName = function () {
+    return `${this.surname} ${this.name}`
+}
+
+console.log(employeeObj.getFullName());
