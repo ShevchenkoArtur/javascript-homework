@@ -65,9 +65,35 @@ console.log(getMiddleSalary(employeeConstructArr));
 
 // task6
 const getRandomEmployee = arr => {
-    let min = Math.ceil(0)
-    let max = Math.floor(arr.length)
+    let min = 0
+    let max = arr.length
     return arr[Math.floor(Math.random() * (max - min)) + min]
 }
 
 console.log(getRandomEmployee(employeeConstructArr));
+
+// task 7
+Object.defineProperty(Employee.prototype, 'fullInfo', {
+    get() {
+        let str = ''
+        for (let key in this) {
+            if (this.hasOwnProperty(key)) {
+                str += `${key} - ${this[key]}, `
+            }
+        }
+
+        return str.substring(0, str.length - 2)
+    },
+
+    set(value) {
+        for (let key in this) {
+            if (value.hasOwnProperty(key)) {
+                this[key] = value[key]
+            }
+        }
+    }
+})
+
+employeeObj.fullInfo = {name: 'name', salary: 12, newProp: 'wp'}
+console.log(employeeObj)
+console.log(employeeObj.fullInfo)
