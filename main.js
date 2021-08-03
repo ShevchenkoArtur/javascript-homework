@@ -20,3 +20,19 @@ Employee.prototype.getFullName = function () {
 }
 
 console.log(employeeObj.getFullName());
+
+// task3
+const createEmployeeFromArr = arr => {
+    const result = []
+
+    for(let i = 0; i < arr.length; i++) {
+        const newEmployee = new Employee(arr[i])
+        result.push(newEmployee)
+    }
+
+    return result
+}
+
+const employeeConstructArr = createEmployeeFromArr(employeeArr)
+
+console.log(employeeConstructArr)
