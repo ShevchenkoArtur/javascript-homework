@@ -25,7 +25,7 @@ console.log(employeeObj.getFullName());
 const createEmployeeFromArr = arr => {
     const result = []
 
-    for(let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
         const newEmployee = new Employee(arr[i])
         result.push(newEmployee)
     }
@@ -36,3 +36,16 @@ const createEmployeeFromArr = arr => {
 const employeeConstructArr = createEmployeeFromArr(employeeArr)
 
 console.log(employeeConstructArr)
+
+// task4
+const getFullNamesFromArr = arr => {
+    const result = []
+
+    for (let i = 0; i < arr.length; i++) {
+        result.push(arr[i].getFullName())
+    }
+
+    return result
+}
+
+console.log(getFullNamesFromArr(employeeConstructArr));
