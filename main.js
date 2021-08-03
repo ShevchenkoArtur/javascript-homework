@@ -62,3 +62,12 @@ const getMiddleSalary = arr => {
 }
 
 console.log(getMiddleSalary(employeeConstructArr));
+
+// task6
+const getRandomEmployee = arr => {
+    let min = Math.ceil(0)
+    let max = Math.floor(arr.length)
+    return arr[Math.floor(Math.random() * (max - min)) + min]
+}
+
+console.log(getRandomEmployee(employeeConstructArr));
