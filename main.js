@@ -131,3 +131,138 @@ const myString = new CustomString();
 console.log(myString.reverse('qwerty'))
 console.log(myString.ucFirst('qwerty'))
 console.log(myString.ucWords('qwerty qwerty qwerty'))
+
+// task3
+class Validator {
+    checkIsEmail(email) {
+        if (typeof email !== 'string') return false
+
+        let emailSymbolCounter = 0
+        for (let i = 0; i < email.length; i++) {
+            if (email[i] === '@') {
+                emailSymbolCounter++
+            }
+
+            if (email[i] === '_' || email[i] === ' ') return false
+        }
+
+        if (emailSymbolCounter !== 1) return false
+
+        if (email[0] === '@' ||
+            email[email.length - 1] === '@' ||
+            email[0] === '-' ||
+            email[email.length - 1] === '-' ||
+            email[0] === '.' ||
+            email[email.length - 1] === '.'
+        ) return false
+
+        return true
+    }
+
+    checkIsDomain(domain) {
+        if (typeof domain !== 'string') return false
+
+        let httpDomain = ''
+        let httpsDomain = ''
+        let dotCounter = 0
+
+        for (let i = 0; i < domain.length; i++) {
+            if (domain[i] === '_' || domain[i] === ' ') return false
+
+            if (domain[i] === '.') {
+                dotCounter++
+            }
+
+            if (i < 8) {
+                httpsDomain += domain[i]
+            }
+
+            if (i < 7) {
+                httpDomain += domain[i]
+            }
+        }
+
+        if (httpDomain === 'http://' || httpsDomain === 'https://') return false
+
+        if (dotCounter === 0) return false
+
+        if (domain[0] === '.' ||
+            domain[domain.length - 1] === '.' ||
+            domain[0] === '-' || domain[domain.length - 1] === '-'
+        ) return false
+
+        return true
+    }
+
+
+    checkIsDate(date) {
+        if (typeof date !== 'string') return false
+
+        if (date[date.length - 1] !== '.') {
+            date += '.'
+        }
+
+        let datePart = ''
+        const dateArr = []
+        for (let i = 0; i < date.length; i++) {
+            if (date[i] === '.') {
+                dateArr.push(Number(datePart))
+                datePart = ''
+            } else {
+                datePart += date[i]
+            }
+        }
+
+        if (dateArr.length !== 3) return false
+
+        if (dateArr[0] > 31 || dateArr[0] < 1) return false
+
+
+        if (dateArr[1] > 12 || dateArr[2] < 1) return false
+
+
+        if (dateArr[3] < 1) return false
+
+
+        return true
+    }
+
+    checkIsPhone(phone) {
+        if (typeof phone !== 'string') return false
+
+        if (phone[0] !== '+') return false
+
+        if (phone[phone.length - 1] === ' ' ||
+            phone[phone.length - 1] === '-' ||
+            phone[phone.length - 1] === '.'
+        ) return false
+
+
+        const phoneNumbers = []
+        for (let i = 0; i < phone.length; i++) {
+            if (phone[i] === '_') return false
+
+            if (!isNaN(Number(phone[i])) && phone[i] !== ' ') {
+                phoneNumbers.push(phone[i])
+            }
+        }
+
+        let ukCode = ''
+        for (let i = 0; i < phoneNumbers.length; i++) {
+            if (i < 3) {
+                ukCode += phoneNumbers[i]
+            }
+        }
+
+        if (ukCode !== '380' || phoneNumbers.length !== 12) return false
+
+        return true
+    }
+}
+
+const validator = new Validator()
+
+console.log(validator.checkIsEmail('vasya.pupkin@gmail.com'))
+console.log(validator.checkIsDomain('google.com'))
+console.log(validator.checkIsDate('30.11.2019'))
+console.log(validator.checkIsPhone('+38 (066) 937-99-92'))
