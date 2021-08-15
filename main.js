@@ -36,6 +36,32 @@ console.log(getUpdatedArr({name: 'Vasya'}))
 console.log(getUpdatedArr())
 console.log(getUpdatedArr(4))
 
+// task3
+const time = () => {
+    let firstStart = false
+    let time = null
+
+    return () => {
+        if (firstStart === false) {
+            firstStart = true
+            time = new Date()
+            return 'Enabled'
+        }
+
+        let currentTime = new Date()
+        let diff = Math.floor((currentTime - time) / 1000)
+        console.log(diff)
+    }
+}
+
+const getTime = time()
+
+console.log(getTime());
+
+setTimeout(getTime, 1000)
+setTimeout(getTime, 2000)
+setTimeout(getTime, 5000)
+
 // task4
 const addZero = num => {
     if (num <= 9) return '0' + num
