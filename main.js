@@ -7,3 +7,16 @@ const removeUser = (arr, index) => {
 
 removeUser(arr, 1)
 console.log(arr)
+
+// task2
+const obj = {name: 'Vasya', age: 1}
+
+const getAllKeys = obj => {
+    const result = []
+    for (let key in obj) {
+        result.push(key)
+    }
+    return result
+}
+
+console.log(getAllKeys(obj))
