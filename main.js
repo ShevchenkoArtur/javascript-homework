@@ -150,3 +150,18 @@ const getCompanyNames = () => {
 }
 
 console.log(getCompanyNames());
+
+// task7
+const getUsersByYear = year => {
+    const idArr = []
+
+    for (let i = 0; i < condidateArr.length; i++) {
+        if (String(year) === condidateArr[i].registered.split('-')[0]) {
+            idArr.push(condidateArr[i]._id)
+        }
+    }
+
+    return idArr
+}
+
+console.log(getUsersByYear(2017));
