@@ -203,3 +203,44 @@ const getCandidatesByGender = gender => {
 }
 
 console.log(getCandidatesByGender('male'));
+
+// task10
+const arrOfNum = [1, 2, 3, 4, 5]
+
+Array.prototype.customJoin = function (separator) {
+    let str = ''
+    let result = ''
+
+    for (let i = 0; i < this.length; i++) {
+        str += this[i] + separator
+    }
+
+    for (let i = 0; i < str.length - 1; i++) {
+        result += str[i]
+    }
+
+    return result
+}
+
+console.log(arrOfNum.customJoin(':'))
+
+Array.prototype.customReduce = function (callback, initialValue) {
+    let accumulator
+    let firstIndex
+
+    if (arguments.length === 1) {
+        accumulator = this[0]
+        firstIndex = 1
+    } else {
+        accumulator = initialValue
+        firstIndex = 0
+    }
+
+    for (let index = firstIndex; index < this.length; index++) {
+        accumulator = callback(accumulator, this[index], index)
+    }
+
+    return accumulator
+}
+
+console.log(arrOfNum.customReduce((total, num) => total + num, 0))
