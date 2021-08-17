@@ -188,3 +188,18 @@ const getCandidateByUnreadMsg = amount => {
 }
 
 console.log(getCandidateByUnreadMsg(8));
+
+// task9
+const getCandidatesByGender = gender => {
+    const result = []
+
+    condidateArr.map(el => {
+        if (el.gender === gender) {
+            result.push(el)
+        }
+    })
+
+    return result
+}
+
+console.log(getCandidatesByGender('male'));
