@@ -165,3 +165,26 @@ const getUsersByYear = year => {
 }
 
 console.log(getUsersByYear(2017));
+
+// task8
+const getCandidateByUnreadMsg = amount => {
+    const result = []
+
+    for (let i = 0; i < condidateArr.length; i++) {
+        let msgCount = ''
+
+        condidateArr[i].greeting.split(' ').map(el => {
+            if (!isNaN(el)) {
+                msgCount = el
+            }
+        })
+
+        if (String(amount) === msgCount) {
+            result.push(condidateArr[i])
+        }
+    }
+
+    return result
+}
+
+console.log(getCandidateByUnreadMsg(8));
