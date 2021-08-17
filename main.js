@@ -20,3 +20,14 @@ const getAllKeys = obj => {
 }
 
 console.log(getAllKeys(obj))
+
+// task3
+const getAllValues = obj => {
+    const result = []
+    for(let key in obj) {
+        result.push(obj[key])
+    }
+    return result
+}
+
+console.log(getAllValues(obj));
