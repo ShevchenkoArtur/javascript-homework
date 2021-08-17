@@ -52,3 +52,18 @@ const insertIntoArr = (obj, id) => {
 
 insertIntoArr(newCandidate, condidateArr[40]._id)
 console.log(condidateArr);
+
+// task5
+class Candidate {
+    constructor(candidate) {
+        this.candidate = candidate
+    }
+
+    state() {
+        return this.candidate.address.split(',')[2]
+    }
+}
+
+const candidate = new Candidate(condidateArr[0])
+
+console.log(candidate.state());
