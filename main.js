@@ -16,3 +16,27 @@ const getCandidateById = id => {
 }
 
 console.log(getCandidateById('5e216bc997af60c69199e4ca'));
+
+// task3
+const sortCandidatesArr = sortBy => {
+    const formatBalance = value => {
+        return Number(value.replace(/,/g, '').replace('$', ''))
+    }
+
+    switch (sortBy) {
+        case 'asc':
+            return [...condidateArr].sort((a, b) => {
+                return formatBalance(a.balance) - formatBalance(b.balance)
+            })
+        case 'desc':
+            return [...condidateArr].sort((a, b) => {
+                return formatBalance(b.balance) - formatBalance(a.balance)
+            })
+        default:
+            return condidateArr
+    }
+}
+
+console.log(sortCandidatesArr('asc'))
+console.log(sortCandidatesArr('desc'))
+console.log(sortCandidatesArr())
