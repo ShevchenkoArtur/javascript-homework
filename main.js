@@ -40,3 +40,27 @@ const sortCandidatesArr = sortBy => {
 console.log(sortCandidatesArr('asc'))
 console.log(sortCandidatesArr('desc'))
 console.log(sortCandidatesArr())
+
+// task4
+const getEyeColorMap = () => {
+    const obj = {}
+
+    condidateArr.map(el => {
+        if (!obj.hasOwnProperty(el.eyeColor)) {
+            Object.defineProperty(obj, el.eyeColor, {
+                enumerable: true,
+                value: []
+            })
+        }
+
+        for (let key in obj) {
+            if (key === el.eyeColor) {
+                obj[key].push(el)
+            }
+        }
+    })
+
+    return obj
+}
+
+console.log(getEyeColorMap());
