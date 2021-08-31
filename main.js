@@ -11,30 +11,18 @@ console.log(arr)
 // task2
 const obj = {name: 'Vasya', age: 1}
 
-const getAllKeys = obj => {
-    const result = []
-    for (let key in obj) {
-        result.push(key)
-    }
-    return result
-}
+const getAllKeys = obj => Object.keys(obj)
 
 console.log(getAllKeys(obj))
 
 // task3
-const getAllValues = obj => {
-    const result = []
-    for (let key in obj) {
-        result.push(obj[key])
-    }
-    return result
-}
+const getAllValues = obj => Object.values(obj)
 
 console.log(getAllValues(obj));
 
 // task4
 const newCandidate = {
-    "_id": "5e216bc9a6059760578aefa4",
+    "_id": "newCandidate",
     "index": 0,
     "guid": "e325a387-e1f4-4c1a-8df8-f188b06e3a2a",
     "isActive": true,
@@ -42,7 +30,7 @@ const newCandidate = {
     "picture": "http://placehold.it/32x32",
     "age": 34,
     "eyeColor": "brown",
-    "name": "Bernice Walton",
+    "name": "New Candidate",
     "gender": "female",
     "company": "EZENT",
     "email": "bernicewalton@ezent.com",
@@ -105,22 +93,12 @@ const newCandidate = {
     ],
     "greeting": "Hello, Bernice Walton! You have 4 unread messages.",
     "favoriteFruit": "strawberry"
-
 }
 
-const insertIntoArr = (obj, id) => {
-    let candidateIndex = null
+const insertIntoArr = (obj, id) => condidateArr.splice(condidateArr.findIndex(val => val._id === id), 0, obj)
 
-    for (let i = 0; i < condidateArr.length; i++) {
-        if (condidateArr[i]._id === id) {
-            candidateIndex = i
-            break
-        }
-    }
-    condidateArr.splice(candidateIndex, 0, obj)
-}
+insertIntoArr(newCandidate, condidateArr[40]._id);
 
-insertIntoArr(newCandidate, condidateArr[40]._id)
 console.log(condidateArr);
 
 // task5
@@ -141,28 +119,20 @@ console.log(candidate.state());
 // task6
 const getCompanyNames = () => {
     const result = []
-    for (let i = 0; i < condidateArr.length; i++) {
-        if (!result.includes(condidateArr[i].company)) {
-            result.push(condidateArr[i].company)
+
+    condidateArr.map(el => {
+        if (!result.includes(el.company)) {
+            result.push(el.company)
         }
-    }
+    })
+
     return result
 }
 
 console.log(getCompanyNames());
 
 // task7
-const getUsersByYear = year => {
-    const idArr = []
-
-    for (let i = 0; i < condidateArr.length; i++) {
-        if (String(year) === condidateArr[i].registered.split('-')[0]) {
-            idArr.push(condidateArr[i]._id)
-        }
-    }
-
-    return idArr
-}
+const getUsersByYear = year => condidateArr.filter(el => String(year) === el.registered.split('-')[0])
 
 console.log(getUsersByYear(2017));
 
@@ -170,19 +140,19 @@ console.log(getUsersByYear(2017));
 const getCandidateByUnreadMsg = amount => {
     const result = []
 
-    for (let i = 0; i < condidateArr.length; i++) {
+    condidateArr.map(el => {
         let msgCount = ''
 
-        condidateArr[i].greeting.split(' ').map(el => {
+        el.greeting.split(' ').map(el => {
             if (!isNaN(el)) {
                 msgCount = el
             }
         })
 
         if (String(amount) === msgCount) {
-            result.push(condidateArr[i])
+            result.push(el)
         }
-    }
+    })
 
     return result
 }
@@ -190,17 +160,7 @@ const getCandidateByUnreadMsg = amount => {
 console.log(getCandidateByUnreadMsg(8));
 
 // task9
-const getCandidatesByGender = gender => {
-    const result = []
-
-    condidateArr.map(el => {
-        if (el.gender === gender) {
-            result.push(el)
-        }
-    })
-
-    return result
-}
+const getCandidatesByGender = gender => condidateArr.filter(el => el.gender === gender)
 
 console.log(getCandidatesByGender('male'));
 
