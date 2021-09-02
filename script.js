@@ -29,7 +29,7 @@ const addInputs = () => {
     }
 }
 
-//addInputs()
+addInputs()
 
 // task2
 const addTime = () => {
@@ -105,3 +105,49 @@ const swapFooterWithMain = () => {
 
 changeBgColorForLastChild()
 swapFooterWithMain()
+
+// task4
+const createOrderedList = () => {
+    const INGREDIENTS = {
+        "cocoa": ["cocoa powder", "milk", "sugar"],
+        "cappuccino": ["milk", "coffee"],
+        "smoothie": ["banana", "orange", "sugar"],
+        "matcha frappe": ["matcha", "milk", "ice"]
+    }
+
+    const arrOfDrinks = Object.keys(INGREDIENTS)
+
+    const h1 = document.createElement('h1')
+    const ul = document.createElement('ul')
+
+    h1.innerText = 'Menu'
+    ul.id = 'menu'
+
+    document.body.append(h1, ul)
+
+    arrOfDrinks.map(el => {
+        const li = document.createElement('li')
+        li.innerText = el
+        ul.append(li)
+    })
+
+    ul.addEventListener('click', (e) => {
+        const ol = document.createElement('ol')
+
+        INGREDIENTS[e.target.textContent].map(el => {
+            const li = document.createElement('li')
+            li.innerText = el
+            ol.append(li)
+        })
+
+        e.target.append(ol)
+
+        Array.from(ul.childNodes).map(el => {
+            if (el.childNodes[0].textContent !== e.target.childNodes[0].textContent && el.childNodes.length > 1) {
+                el.childNodes[1].remove()
+            }
+        })
+    })
+}
+
+createOrderedList()
