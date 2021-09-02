@@ -29,7 +29,7 @@ const addInputs = () => {
     }
 }
 
-addInputs()
+//addInputs()
 
 // task2
 const addTime = () => {
@@ -70,3 +70,38 @@ const addTime = () => {
 
 addTime()
 
+// task3
+const wrapperDiv = document.createElement('div')
+const footerDiv = document.createElement('div')
+const mainDiv = document.createElement('div')
+const h1 = document.createElement('h1')
+const firstPara = document.createElement('p')
+const secondPara = document.createElement('p')
+const lastPara = document.createElement('p')
+
+wrapperDiv.id = 'wrapper'
+footerDiv.id = 'footer'
+mainDiv.id = 'main'
+
+h1.innerText = 'Footer'
+firstPara.innerText = 'I am first paragraph'
+secondPara.innerText = 'I am second paragraph'
+lastPara.innerText = 'I am last paragraph'
+
+document.body.append(wrapperDiv)
+wrapperDiv.append(footerDiv, mainDiv)
+footerDiv.append(h1)
+mainDiv.append(firstPara, secondPara, lastPara)
+
+const changeBgColorForLastChild = () => {
+    const lastChild = mainDiv.lastChild
+    lastChild.setAttribute('style', 'background-color: red')
+}
+
+const swapFooterWithMain = () => {
+    footerDiv.remove()
+    wrapperDiv.append(footerDiv)
+}
+
+changeBgColorForLastChild()
+swapFooterWithMain()
