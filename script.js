@@ -31,10 +31,42 @@ const addInputs = () => {
 
 addInputs()
 
+// task2
+const addTime = () => {
+    const addZero = num => {
+        if (num <= 9) return '0' + num
+        else return num
+    }
 
+    const getTime = () => {
+        const date = new Date()
+        let hrs = date.getHours()
+        let min = date.getMinutes()
+        let sec = date.getSeconds()
+        return `${addZero(hrs)} : ${addZero(min)} : ${addZero(sec)}`
+    }
 
+    const h2 = document.createElement('h2')
+    const startButton = document.createElement('button')
+    const stopButton = document.createElement('button')
 
+    startButton.innerText = 'Start'
+    stopButton.innerText = 'Stop'
 
+    document.body.append(startButton, stopButton, h2)
 
+    h2.innerText = getTime()
 
+    startButton.addEventListener('click', () => {
+        const timerId = setInterval(() => {
+            h2.innerText = getTime()
+        }, 1000)
+
+        stopButton.addEventListener('click', () => {
+            clearInterval(timerId)
+        })
+    })
+}
+
+addTime()
 
