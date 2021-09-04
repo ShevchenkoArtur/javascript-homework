@@ -71,83 +71,115 @@ const addTime = () => {
 addTime()
 
 // task3
-const wrapperDiv = document.createElement('div')
-const footerDiv = document.createElement('div')
-const mainDiv = document.createElement('div')
-const h1 = document.createElement('h1')
-const firstPara = document.createElement('p')
-const secondPara = document.createElement('p')
-const lastPara = document.createElement('p')
+const createMarkup = () => {
+    const wrapperDiv = document.createElement('div')
+    const footerDiv = document.createElement('div')
+    const mainDiv = document.createElement('div')
+    const h1 = document.createElement('h1')
+    const firstPara = document.createElement('p')
+    const secondPara = document.createElement('p')
+    const lastPara = document.createElement('p')
 
-wrapperDiv.id = 'wrapper'
-footerDiv.id = 'footer'
-mainDiv.id = 'main'
+    wrapperDiv.id = 'wrapper'
+    footerDiv.id = 'footer'
+    mainDiv.id = 'main'
 
-h1.innerText = 'Footer'
-firstPara.innerText = 'I am first paragraph'
-secondPara.innerText = 'I am second paragraph'
-lastPara.innerText = 'I am last paragraph'
+    h1.innerText = 'Footer'
+    firstPara.innerText = 'I am first paragraph'
+    secondPara.innerText = 'I am second paragraph'
+    lastPara.innerText = 'I am last paragraph'
 
-document.body.append(wrapperDiv)
-wrapperDiv.append(footerDiv, mainDiv)
-footerDiv.append(h1)
-mainDiv.append(firstPara, secondPara, lastPara)
+    document.body.append(wrapperDiv)
+    wrapperDiv.append(footerDiv, mainDiv)
+    footerDiv.append(h1)
+    mainDiv.append(firstPara, secondPara, lastPara)
+}
+
 
 const changeBgColorForLastChild = () => {
-    const lastChild = mainDiv.lastChild
+    const main = document.querySelector('#main')
+    const lastChild = main.lastChild
+
     lastChild.setAttribute('style', 'background-color: red')
 }
 
 const swapFooterWithMain = () => {
-    footerDiv.remove()
-    wrapperDiv.append(footerDiv)
+    const footer = document.querySelector('#footer')
+    const wrapper = document.querySelector('#wrapper')
+
+    footer.remove()
+    wrapper.append(footer)
 }
 
+createMarkup()
 changeBgColorForLastChild()
 swapFooterWithMain()
 
 // task4
-const createOrderedList = () => {
+const createListMarkup = () => {
     const INGREDIENTS = {
         "cocoa": ["cocoa powder", "milk", "sugar"],
         "cappuccino": ["milk", "coffee"],
         "smoothie": ["banana", "orange", "sugar"],
         "matcha frappe": ["matcha", "milk", "ice"]
-    }
-
-    const arrOfDrinks = Object.keys(INGREDIENTS)
+    };
 
     const h1 = document.createElement('h1')
-    const ul = document.createElement('ul')
-
     h1.innerText = 'Menu'
+
+    const ul = document.createElement('ul')
     ul.id = 'menu'
 
-    document.body.append(h1, ul)
+    const style = document.querySelector('style')
+    style.append(document.innerHTML = '.close {display: none} .open {display: block!important}')
 
-    arrOfDrinks.map(el => {
+    for (let key in INGREDIENTS) {
         const li = document.createElement('li')
-        li.innerText = el
-        ul.append(li)
-    })
-
-    ul.addEventListener('click', (e) => {
         const ol = document.createElement('ol')
 
-        INGREDIENTS[e.target.textContent].map(el => {
+        ol.classList.add('close')
+        li.innerText = key
+
+        INGREDIENTS[key].map(el => {
             const li = document.createElement('li')
             li.innerText = el
             ol.append(li)
         })
 
-        e.target.append(ol)
+        li.append(ol)
+        ul.append(li)
+    }
 
-        Array.from(ul.childNodes).map(el => {
-            if (el.childNodes[0].textContent !== e.target.childNodes[0].textContent && el.childNodes.length > 1) {
-                el.childNodes[1].remove()
+    document.head.append(style)
+    document.body.append(h1, ul)
+}
+
+const addListEventListener = () => {
+    const menu = document.querySelector('#menu')
+    let lastSelectedItem
+
+    const showList = (target) => {
+        if (lastSelectedItem) {
+            if (lastSelectedItem === target) {
+                lastSelectedItem.classList.remove('open')
+                lastSelectedItem = null
+                return
+            } else {
+                lastSelectedItem.classList.remove('open')
+                lastSelectedItem = target
+                lastSelectedItem.classList.add('open')
             }
-        })
+        }
+
+        lastSelectedItem = target
+        lastSelectedItem.classList.add('open')
+    }
+
+    menu.addEventListener('click', (e) => {
+        let target = e.target.childNodes[1]
+        showList(target)
     })
 }
 
-createOrderedList()
+createListMarkup()
+addListEventListener()
