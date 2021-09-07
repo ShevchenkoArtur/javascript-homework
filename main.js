@@ -17,6 +17,41 @@ const promise = new Promise((resolve, reject) => {
     })
     .catch(error => console.log('Exit'))
 
+// task2
+class CustomError extends Error {
+    constructor(message, name) {
+        super(message);
+        this.message = message
+        this.name = name
+    }
+}
+
+const goToShop = () => Promise.resolve([1, 2, 3, 4])
+
+const makeDinner = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            goToShop()
+                .then(response => {
+                    if (response.length > 3) {
+                        resolve('Bon Appetit')
+                    } else {
+                        reject('Too low products')
+                    }
+                })
+        }, 3000)
+    })
+}
+
+makeDinner()
+    .then(response => {
+        makeDinner().then(console.log(response))
+    })
+    .catch(error => {
+        const myError = new CustomError('Too low products', 'Product Error')
+        throw myError
+    })
+
 // task3
 const getCards = (id) => {
     fetch(`https://rickandmortyapi.com/api/character/${id}`)
